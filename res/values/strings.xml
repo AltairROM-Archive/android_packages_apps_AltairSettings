@@ -18,7 +18,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="altair_settings_activity_title">Customization</string>
+    <string name="altair_settings_activity_title">Additional settings</string>
     <string name="altair_settings_activity_summary">Buttons, navigation, status bar, themes</string>
 
     <!-- Menu entries -->
