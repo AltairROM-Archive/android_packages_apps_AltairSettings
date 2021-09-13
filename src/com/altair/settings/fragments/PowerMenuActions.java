@@ -58,7 +58,7 @@ public class PowerMenuActions extends SettingsPreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.power_menu_settings);
+        addPreferencesFromResource(R.xml.power_menu_actions);
 
         mContext = getActivity().getApplicationContext();
         mAllActions = PowerMenuConstants.getAllActions();
@@ -214,4 +214,3 @@ public class PowerMenuActions extends SettingsPreferenceFragment {
         mContext.sendBroadcastAsUser(u, UserHandle.ALL);
     }
 }
-
