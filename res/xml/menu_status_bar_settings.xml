@@ -46,7 +46,7 @@
          android:key="use_old_mobiletype"
          android:title="@string/use_old_mobiletype_title"
          android:summary="@string/use_old_mobiletype_summary"
-         android:defaultValue="false" />
+         android:defaultValue="true" />
 
     <PreferenceCategory
         android:key="clock_category"
