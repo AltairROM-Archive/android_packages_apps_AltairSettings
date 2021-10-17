@@ -538,17 +538,17 @@ public class CustomNavigationSettings extends DashboardFragment implements
     }
 
     private void updateCustomAppSummaries() {
-        mHomeLongPressCustomApp.setEnabled(isCustomAppAction(
+        mHomeLongPressCustomApp.setVisible(isCustomAppAction(
                 LineageSettings.System.KEY_HOME_LONG_PRESS_ACTION, mDefaultHomeLongPressAction));
-        mHomeDoubleTapCustomApp.setEnabled(isCustomAppAction(
+        mHomeDoubleTapCustomApp.setVisible(isCustomAppAction(
                 LineageSettings.System.KEY_HOME_DOUBLE_TAP_ACTION, mDefaultHomeDoubleTapAction));
-        mBackLongPressCustomApp.setEnabled(isCustomAppAction(
+        mBackLongPressCustomApp.setVisible(isCustomAppAction(
                 LineageSettings.System.KEY_BACK_LONG_PRESS_ACTION, mDefaultBackLongPressAction));
-        mBackDoubleTapCustomApp.setEnabled(isCustomAppAction(
+        mBackDoubleTapCustomApp.setVisible(isCustomAppAction(
                 LineageSettings.System.KEY_BACK_DOUBLE_TAP_ACTION, mDefaultBackDoubleTapAction));
-        mAppSwitchLongPressCustomApp.setEnabled(isCustomAppAction(
+        mAppSwitchLongPressCustomApp.setVisible(isCustomAppAction(
                 LineageSettings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION, mDefaultAppSwitchLongPressAction));
-        mAppSwitchDoubleTapCustomApp.setEnabled(isCustomAppAction(
+        mAppSwitchDoubleTapCustomApp.setVisible(isCustomAppAction(
                 LineageSettings.System.KEY_APP_SWITCH_DOUBLE_TAP_ACTION, mDefaultAppSwitchDoubleTapAction));
 
         setCustomAppSummary(mHomeLongPressCustomApp, LineageSettings.System.KEY_HOME_LONG_PRESS_CUSTOM_APP_FR_NAME);
