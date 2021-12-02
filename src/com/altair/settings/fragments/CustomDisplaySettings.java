@@ -18,6 +18,7 @@ package com.altair.settings.fragments;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.hardware.display.AmbientDisplayConfiguration;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
@@ -33,6 +34,10 @@ import com.altair.settings.utils.SystemUtils;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.dashboard.DashboardFragment;
+import com.android.settings.display.AmbientDisplayAlwaysOnPreferenceController;
+import com.android.settings.display.AmbientDisplayNotificationsPreferenceController;
+import com.android.settings.gestures.DoubleTapScreenPreferenceController;
+import com.android.settings.gestures.PickupGesturePreferenceController;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
@@ -48,6 +53,10 @@ public class CustomDisplaySettings extends DashboardFragment implements
 
     private static final String KEY_REFRESH_RATE_SETTING = "refresh_rate_setting";
 
+    private static final String CATEGORY_MISCELLANEOUS = "miscellaneous";
+
+    private AmbientDisplayConfiguration mConfig;
+
     private GlobalSettingListPreference mVariableRefreshRate;
 
     @Override
@@ -61,13 +70,14 @@ public class CustomDisplaySettings extends DashboardFragment implements
 
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
+        final PreferenceCategory miscCategory = prefScreen.findPreference(CATEGORY_MISCELLANEOUS);
 
         mVariableRefreshRate = prefScreen.findPreference(KEY_REFRESH_RATE_SETTING);
         boolean hasVariableRefreshRate =
             getContext().getResources().getBoolean(com.android.internal.R.bool.config_hasVariableRefreshRate);
 
         if (!hasVariableRefreshRate) {
-            prefScreen.removePreference(mVariableRefreshRate);
+            miscCategory.removePreference(mVariableRefreshRate);
         } else {
             int defVarRateSetting = getContext().getResources().getInteger(
                  com.android.internal.R.integer.config_defaultVariableRefreshRateSetting);
@@ -97,8 +107,24 @@ public class CustomDisplaySettings extends DashboardFragment implements
         super.onPause();
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        use(AmbientDisplayAlwaysOnPreferenceController.class).setConfig(getConfig(context));
+        use(AmbientDisplayNotificationsPreferenceController.class).setConfig(getConfig(context));
+        use(DoubleTapScreenPreferenceController.class).setConfig(getConfig(context));
+        use(PickupGesturePreferenceController.class).setConfig(getConfig(context));
+    }
+
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         return true;
+    }
+
+    private AmbientDisplayConfiguration getConfig(Context context) {
+        if (mConfig == null) {
+            mConfig = new AmbientDisplayConfiguration(context);
+        }
+        return mConfig;
     }
 
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
@@ -128,4 +154,3 @@ public class CustomDisplaySettings extends DashboardFragment implements
                 }
             };
 }
-

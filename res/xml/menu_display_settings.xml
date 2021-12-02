@@ -20,26 +20,74 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/menu_display_settings_title">
 
-    <!-- Smart Pixels -->
-    <Preference
-        android:key="smart_pixels"
-        android:title="@string/smart_pixels_title"
-        android:summary="@string/smart_pixels_summary"
-        android:fragment="com.altair.settings.fragments.SmartPixels" />
-
     <!-- Ambient display -->
-    <lineageos.preference.RemotePreference
-        android:key="doze_device_settings"
+    <PreferenceCategory
+        android:key="ambient_display_category_when_to_show"
         android:title="@string/ambient_display_screen_title">
-        <intent android:action="org.lineageos.settings.device.DOZE_SETTINGS" />
-    </lineageos.preference.RemotePreference>
 
-    <!-- Refresh rate -->
-    <com.lineage.support.preferences.GlobalSettingListPreference
-        android:key="refresh_rate_setting"
-        android:title="@string/refresh_rate_title"
-        android:entries="@array/refresh_rate_entries"
-        android:entryValues="@array/refresh_rate_values" />
+        <com.android.settingslib.RestrictedSwitchPreference
+            android:key="ambient_display_always_on"
+            android:title="@string/doze_always_on_title"
+            android:summary="@string/doze_always_on_summary"
+            settings:controller="com.android.settings.display.AmbientDisplayAlwaysOnPreferenceController"
+            settings:userRestriction="no_ambient_display" />
+
+        <Preference
+            android:key="ambient_display_tap"
+            android:title="@string/ambient_display_tap_screen_title"
+            android:fragment="com.android.settings.gestures.TapScreenGestureSettings"
+            settings:searchable="false"
+            settings:controller="com.android.settings.gestures.TapScreenGesturePreferenceController" />
+
+        <Preference
+            android:key="ambient_display_double_tap"
+            android:title="@string/ambient_display_title"
+            android:fragment="com.android.settings.gestures.DoubleTapScreenSettings"
+            settings:searchable="false"
+            settings:controller="com.android.settings.gestures.DoubleTapScreenPreferenceController" />
+
+        <Preference
+            android:key="ambient_display_pick_up"
+            android:title="@string/ambient_display_pickup_title"
+            android:fragment="com.android.settings.gestures.PickupGestureSettings"
+            settings:searchable="false"
+            settings:controller="com.android.settings.gestures.PickupGesturePreferenceController" />
+
+        <SwitchPreference
+            android:key="ambient_display_notification"
+            android:title="@string/doze_title"
+            android:summary="@string/doze_summary"
+            settings:controller="com.android.settings.display.AmbientDisplayNotificationsPreferenceController" />
+
+        <lineageos.preference.RemotePreference
+            android:key="doze_device_settings"
+            android:title="@string/ambient_display_screen_title"
+            android:summary="@string/doze_summary"
+            lineage:replacesKey="ambient_display_always_on|ambient_display_notification">
+            <intent android:action="org.lineageos.settings.device.DOZE_SETTINGS" />
+        </lineageos.preference.RemotePreference>
+
+    </PreferenceCategory>
+
+    <!-- Miscellaneous -->
+    <PreferenceCategory
+        android:key="miscellaneous"
+        android:title="@string/miscellaneous_category_title">
+
+        <!-- Smart Pixels -->
+        <Preference
+            android:key="smart_pixels"
+            android:title="@string/smart_pixels_title"
+            android:summary="@string/smart_pixels_summary"
+            android:fragment="com.altair.settings.fragments.SmartPixels" />
+
+        <!-- Refresh rate -->
+        <com.lineage.support.preferences.GlobalSettingListPreference
+            android:key="refresh_rate_setting"
+            android:title="@string/refresh_rate_title"
+            android:entries="@array/refresh_rate_entries"
+            android:entryValues="@array/refresh_rate_values" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
-
