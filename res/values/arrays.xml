@@ -353,33 +353,6 @@
         <item>8</item>
     </string-array>
 
-    <!-- Accent color picker preset colors -->
-    <integer-array name="accent_color_picker_values">
-        <item>0xff008577</item> <!-- default - material_deep_teal_500 -->
-        <item>0xff0032a0</item> <!-- Blue -->
-        <item>0xff3368bf</item> <!-- Pixel blue -->
-        <item>0xff0099cc</item> <!-- Holo blue -->
-        <item>0xff00873e</item> <!-- Green -->
-        <item>0xff963cbd</item> <!-- Purple -->
-        <item>0xffe10600</item> <!-- Red -->
-        <item>0xffda1984</item> <!-- Pink -->
-        <item>0xffde7c00</item> <!-- Orange -->
-        <item>0xfff1c400</item> <!-- Yellow -->
-    </integer-array>
-
-    <string-array name="accent_color_picker_names">
-        <item>@string/theme_accent_color_default</item>
-        <item>@string/theme_accent_color_blue</item>
-        <item>@string/theme_accent_color_pixel_blue</item>
-        <item>@string/theme_accent_color_holo_blue</item>
-        <item>@string/theme_accent_color_green</item>
-        <item>@string/theme_accent_color_purple</item>
-        <item>@string/theme_accent_color_red</item>
-        <item>@string/theme_accent_color_pink</item>
-        <item>@string/theme_accent_color_orange</item>
-        <item>@string/theme_accent_color_yellow</item>
-    </string-array>
-
     <!-- Refresh rate -->
     <string-array name="refresh_rate_entries">
         <item>@string/refresh_rate_auto</item>
@@ -394,4 +367,3 @@
     </string-array>
 
 </resources>
-

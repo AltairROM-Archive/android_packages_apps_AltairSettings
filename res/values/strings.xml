@@ -285,27 +285,12 @@
 
     <!-- THEMES -->
     <string name="theme_styles_category_title">Styles &amp; wallpapers</string>
-    <string name="theme_select_title">Themes</string>
-    <string name="theme_select_summary">Browse and select installed themes</string>
 
     <string name="theme_elements_category_title">Colors &amp; elements</string>
     <string name="theme_elements_accent_color_title">Accent color</string>
-    <string name="theme_elements_primary_color_title">Dark mode background</string>
     <string name="theme_elements_font_title">Headline &amp; body font</string>
     <string name="theme_elements_icon_shape_title">Icon shape</string>
     <string name="theme_elements_sysui_icon_title">Status bar icons</string>
-
-    <string name="theme_accent_color_default">Device default</string>
-    <string name="theme_accent_color_blue">Blue</string>
-    <string name="theme_accent_color_brown">Brown</string>
-    <string name="theme_accent_color_holo_blue">Holo blue</string>
-    <string name="theme_accent_color_green">Green</string>
-    <string name="theme_accent_color_orange">Orange</string>
-    <string name="theme_accent_color_pink">Pink</string>
-    <string name="theme_accent_color_pixel_blue">Pixel blue</string>
-    <string name="theme_accent_color_purple">Purple</string>
-    <string name="theme_accent_color_red">Red</string>
-    <string name="theme_accent_color_yellow">Yellow</string>
 
     <string name="theme_substratum_warning">If you have elected to theme \"Android System\" using a Substratum theme, the settings for that theme will override the custom colors and elements configured here.</string>
 

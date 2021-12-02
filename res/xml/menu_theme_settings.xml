@@ -26,8 +26,7 @@
 
         <Preference
             android:key="theme_select_activity"
-            android:title="@string/theme_select_title"
-            android:summary="@string/theme_select_summary"
+            android:title="@string/style_and_wallpaper_settings_title"
             android:persistent="false" >
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.android.customization"
@@ -49,23 +48,18 @@
         android:key="theme_elements"
         android:title="@string/theme_elements_category_title">
 
-        <com.lineage.support.colorpicker.ColorPreference
-            android:key="theme_accent_color"
-            android:title="@string/theme_elements_accent_color_title"
-            settings:cpv_dialogType="preset"
-            settings:cpv_colorPresets="@array/accent_color_picker_values"
-            settings:cpv_allowCustom="false"
-            settings:cpv_showColorShades="false" />
+        <com.altair.settings.theme.ThemePreference
+            android:key="android.theme.customization.accent_color"
+            android:title="@string/theme_elements_accent_color_title"/>
 
-        <ListPreference
-            android:key="android.theme.customization.primary_color"
-            android:title="@string/theme_elements_primary_color_title"/>
-        <ListPreference
+        <com.altair.settings.theme.FontListPreference
             android:key="android.theme.customization.font"
             android:title="@string/theme_elements_font_title"/>
-        <ListPreference
+
+        <com.altair.settings.theme.ThemePreference
             android:key="android.theme.customization.adaptive_icon_shape"
             android:title="@string/theme_elements_icon_shape_title"/>
+
         <ListPreference
             android:key="android.theme.customization.icon_pack.android"
             android:title="@string/theme_elements_sysui_icon_title"/>
@@ -73,4 +67,3 @@
     </PreferenceCategory>
 
 </PreferenceScreen>
-
