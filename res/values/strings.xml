@@ -127,7 +127,6 @@
     <string name="navkeys_backlight_touch_only_title">Backlight only on touch</string>
     <string name="navkeys_backlight_touch_only_summary">Illuminate navigation keys only when they are pressed</string>
 
-    <string name="power_menu_title">Power menu</string>
     <string name="power_menu_screenshot_title">Screenshot</string>
     <string name="power_menu_screenshot_summary">Long-press for partial screenshot</string>
     <string name="power_menu_airplane_title">Airplane mode</string>
@@ -303,5 +302,9 @@
     <string name="notifications_category_title">Notifications</string>
     <string name="notification_guts_kill_app_button_title">Kill app button</string>
     <string name="notification_guts_kill_app_button_summary">Show a kill app button in the notification\'s longpress menu</string>
+
+    <string name="power_menu_title">Power menu</string>
+    <string name="power_menu_actions_title">Power menu actions</string>
+    <string name="power_menu_actions_summary">Select actions available on the power menu</string>
 
 </resources>
