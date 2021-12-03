@@ -34,7 +34,7 @@
             android:key="gesture_system_navigation_input_summary"
             android:title="@string/system_navigation_title"
             android:fragment="com.android.settings.gestures.SystemNavigationGestureSettings"
-            settings:controller="com.android.settings.gestures.SystemNavigationPreferenceController" />
+            settings:controller="com.altair.settings.fragments.navbar.SystemNavigationPreferenceController" />
 
         <lineageos.preference.LineageSystemSettingSwitchPreference
                 android:key="navigation_bar_menu_arrow_keys"
