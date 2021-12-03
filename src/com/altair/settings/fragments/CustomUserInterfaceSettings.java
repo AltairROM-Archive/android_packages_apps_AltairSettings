@@ -16,20 +16,12 @@
 
 package com.altair.settings.fragments;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
-import android.provider.Settings;
 
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceScreen;
-import androidx.preference.SwitchPreference;
 
-import com.altair.settings.utils.SystemUtils;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.dashboard.DashboardFragment;
@@ -45,12 +37,6 @@ public class CustomUserInterfaceSettings extends DashboardFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
     private static final String TAG = "CustomUserInterfaceSettings";
 
-    private static final String RECENTS_COMPONENT_TYPE = "recents_component";
-    private static final String RECENTS_TYPE = "recents_layout_style";
-    private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
-
-    private static final int RECENTS_COMPONENT_OREO = 1;
-
     @Override
     protected int getPreferenceScreenResId() {
         return R.xml.menu_user_interface_settings;
@@ -59,17 +45,6 @@ public class CustomUserInterfaceSettings extends DashboardFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final ContentResolver resolver = getActivity().getContentResolver();
-        final PreferenceScreen prefSet = getPreferenceScreen();
-
-        // SmartPixels
-        boolean enableSmartPixels = getContext().getResources().
-                getBoolean(com.android.internal.R.bool.config_enableSmartPixels);
-        Preference SmartPixels = findPreference("smart_pixels");
-        if (!enableSmartPixels) {
-            prefSet.removePreference(SmartPixels);
-        }
     }
 
     @Override
