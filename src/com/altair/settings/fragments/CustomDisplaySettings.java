@@ -51,13 +51,12 @@ public class CustomDisplaySettings extends DashboardFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
     private static final String TAG = "CustomDisplaySettings";
 
+    private static final String KEY_SMART_PIXELS = "smart_pixels";
     private static final String KEY_REFRESH_RATE_SETTING = "refresh_rate_setting";
 
     private static final String CATEGORY_MISCELLANEOUS = "miscellaneous";
 
     private AmbientDisplayConfiguration mConfig;
-
-    private GlobalSettingListPreference mVariableRefreshRate;
 
     @Override
     protected int getPreferenceScreenResId() {
@@ -72,18 +71,30 @@ public class CustomDisplaySettings extends DashboardFragment implements
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final PreferenceCategory miscCategory = prefScreen.findPreference(CATEGORY_MISCELLANEOUS);
 
-        mVariableRefreshRate = prefScreen.findPreference(KEY_REFRESH_RATE_SETTING);
+        // Smart Pixels
+        boolean enableSmartPixels = getContext().getResources().
+                getBoolean(com.android.internal.R.bool.config_enableSmartPixels);
+        Preference smartPixels = findPreference(KEY_SMART_PIXELS);
+        if (!enableSmartPixels) {
+            miscCategory.removePreference(smartPixels);
+        }
+
+        // Refresh rate
+        GlobalSettingListPreference refreshRateSetting = prefScreen.findPreference(KEY_REFRESH_RATE_SETTING);
         boolean hasVariableRefreshRate =
             getContext().getResources().getBoolean(com.android.internal.R.bool.config_hasVariableRefreshRate);
-
         if (!hasVariableRefreshRate) {
-            miscCategory.removePreference(mVariableRefreshRate);
+            miscCategory.removePreference(refreshRateSetting);
         } else {
             int defVarRateSetting = getContext().getResources().getInteger(
                  com.android.internal.R.integer.config_defaultVariableRefreshRateSetting);
             int mVarRateSetting = Settings.Global.getInt(getContext().getContentResolver(),
                  Settings.Global.REFRESH_RATE_SETTING, defVarRateSetting);
-            mVariableRefreshRate.setValue(String.valueOf(mVarRateSetting));
+            refreshRateSetting.setValue(String.valueOf(mVarRateSetting));
+        }
+
+        if (!enableSmartPixels && !hasVariableRefreshRate) {
+            prefScreen.removePreference(miscCategory);
         }
     }
 
@@ -144,6 +155,13 @@ public class CustomDisplaySettings extends DashboardFragment implements
                 @Override
                 public List<String> getNonIndexableKeys(Context context) {
                     List<String> keys = super.getNonIndexableKeys(context);
+
+                    boolean enableSmartPixels = context.getResources().
+                            getBoolean(com.android.internal.R.bool.config_enableSmartPixels);
+                    if (!enableSmartPixels) {
+                        keys.add(KEY_SMART_PIXELS);
+                    }
+
                     boolean hasVariableRefreshRate =
                         context.getResources().getBoolean(com.android.internal.R.bool.config_hasVariableRefreshRate);
                     if (!hasVariableRefreshRate) {
