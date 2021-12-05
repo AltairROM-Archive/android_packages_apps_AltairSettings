@@ -30,23 +30,29 @@
             android:action="com.android.settings.action.STATUS_BAR_TUNER" />
     </PreferenceScreen>
 
-    <PreferenceScreen
-        android:fragment="com.altair.settings.fragments.NetworkTrafficSettings"
-        android:key="network_traffic_settings"
-        android:title="@string/network_traffic_settings_title"
-        android:summary="@string/network_traffic_settings_summary" />
+    <PreferenceCategory
+        android:key="network_category"
+        android:title="@string/status_bar_network_category_title">
 
-    <com.lineage.support.preferences.SystemSettingSwitchPreference
-        android:key="data_activity_arrows"
-        android:title="@string/data_wifi_activity_arrows_title"
-        android:summary="@string/data_wifi_activity_arrows_summary"
-        android:defaultValue="true" />
+        <PreferenceScreen
+            android:key="network_traffic_settings"
+            android:title="@string/network_traffic_settings_title"
+            android:summary="@string/network_traffic_settings_summary"
+            android:fragment="com.altair.settings.fragments.NetworkTrafficSettings" />
 
-    <com.lineage.support.preferences.SystemSettingSwitchPreference
-         android:key="use_old_mobiletype"
-         android:title="@string/use_old_mobiletype_title"
-         android:summary="@string/use_old_mobiletype_summary"
-         android:defaultValue="true" />
+        <com.lineage.support.preferences.SystemSettingSwitchPreference
+            android:key="data_activity_arrows"
+            android:title="@string/data_wifi_activity_arrows_title"
+            android:summary="@string/data_wifi_activity_arrows_summary"
+            android:defaultValue="true" />
+
+        <com.lineage.support.preferences.SystemSettingSwitchPreference
+             android:key="use_old_mobiletype"
+             android:title="@string/use_old_mobiletype_title"
+             android:summary="@string/use_old_mobiletype_summary"
+             android:defaultValue="true" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="clock_category"
@@ -132,4 +138,3 @@
     </PreferenceCategory>
 
 </PreferenceScreen>
-

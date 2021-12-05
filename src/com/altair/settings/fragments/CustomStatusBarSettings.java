@@ -26,17 +26,22 @@ import android.text.format.DateFormat;
 import android.view.View;
 
 import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreference;
 
 import com.altair.settings.utils.DeviceUtils;
 import com.altair.settings.utils.StatusBarIcon;
+import com.altair.settings.utils.TelephonyUtils;
+
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
+
+import com.lineage.support.preferences.SystemSettingSwitchPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +55,9 @@ public class CustomStatusBarSettings extends DashboardFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
     private static final String TAG = "CustomStatusBarSettings";
 
+    private static final String KEY_NETWORK_TRAFFIC_SETTINGS = "network_traffic_settings";
+    private static final String KEY_USE_OLD_MOBILETYPE = "use_old_mobiletype";
+
     private static final String STATUS_BAR_SHOW_CLOCK = "status_bar_show_clock";
     private static final String STATUS_BAR_CLOCK = "status_bar_clock";
     private static final String CLOCK_SECONDS = "clock_seconds";
@@ -61,7 +69,7 @@ public class CustomStatusBarSettings extends DashboardFragment implements
 
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 2;
 
-    private static final String NETWORK_TRAFFIC_SETTINGS = "network_traffic_settings";
+    private static final String CATEGORY_NETWORK = "network_category";
 
     private StatusBarIcon mClockIcon;
     private StatusBarIcon mBatteryIcon;
@@ -87,15 +95,24 @@ public class CustomStatusBarSettings extends DashboardFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Context context = getContext();
         ContentResolver resolver = getActivity().getContentResolver();
 
-        mNetworkTrafficPref = findPreference(NETWORK_TRAFFIC_SETTINGS);
-        mHasNotch = DeviceUtils.hasNotch(getActivity());
-        if (mHasNotch) {
-            getPreferenceScreen().removePreference(mNetworkTrafficPref);
+        final PreferenceScreen prefScreen = getPreferenceScreen();
+        final PreferenceCategory networkCategory = prefScreen.findPreference(CATEGORY_NETWORK);
+
+        SystemSettingSwitchPreference useOldMobileType = findPreference(KEY_USE_OLD_MOBILETYPE);
+        if (!TelephonyUtils.isVoiceCapable(getActivity())) {
+            networkCategory.removePreference(useOldMobileType);
         }
 
-        mClockIcon = new StatusBarIcon(getContext(), "clock");
+        mNetworkTrafficPref = findPreference(KEY_NETWORK_TRAFFIC_SETTINGS);
+        mHasNotch = DeviceUtils.hasNotch(getActivity());
+        if (mHasNotch) {
+            networkCategory.removePreference(mNetworkTrafficPref);
+        }
+
+        mClockIcon = new StatusBarIcon(context, "clock");
 
         mStatusBarShowClock = findPreference(STATUS_BAR_SHOW_CLOCK);
         mStatusBarShowClock.setOnPreferenceChangeListener(this);
@@ -107,7 +124,7 @@ public class CustomStatusBarSettings extends DashboardFragment implements
         mStatusBarShowBattery = findPreference(STATUS_BAR_SHOW_BATTERY);
         mStatusBarShowBattery.setOnPreferenceChangeListener(this);
 
-        mBatteryIcon = new StatusBarIcon(getContext(), "battery");
+        mBatteryIcon = new StatusBarIcon(context, "battery");
 
         mStatusBarBatteryShowPercent = findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
         mStatusBarBattery = findPreference(STATUS_BAR_BATTERY_STYLE);
@@ -235,10 +252,9 @@ public class CustomStatusBarSettings extends DashboardFragment implements
                     List<String> keys = super.getNonIndexableKeys(context);
 
                     if (DeviceUtils.hasNotch(context)) {
-                        keys.add(NETWORK_TRAFFIC_SETTINGS);
+                        keys.add(KEY_NETWORK_TRAFFIC_SETTINGS);
                     }
                     return keys;
                 }
             };
 }
-
