@@ -57,6 +57,12 @@ public class CustomStatusBarSettings extends DashboardFragment implements
 
     private static final String KEY_NETWORK_TRAFFIC_SETTINGS = "network_traffic_settings";
     private static final String KEY_USE_OLD_MOBILETYPE = "use_old_mobiletype";
+    private static final String KEY_DATA_DISABLED_ICON = "data_disabled_icon";
+    private static final String KEY_ROAMING_INDICATOR_ICON = "roaming_indicator_icon";
+    private static final String KEY_SHOW_FOURG_ICON = "show_fourg_icon";
+    private static final String KEY_SHOW_VOLTE_ICON = "show_volte_icon";
+    private static final String KEY_SHOW_VOWIFI_ICON = "show_vowifi_icon";
+    private static final String KEY_VOLTE_VOWIFI_OVERRIDE = "volte_vowifi_override";
 
     private static final String STATUS_BAR_SHOW_CLOCK = "status_bar_show_clock";
     private static final String STATUS_BAR_CLOCK = "status_bar_clock";
@@ -102,8 +108,21 @@ public class CustomStatusBarSettings extends DashboardFragment implements
         final PreferenceCategory networkCategory = prefScreen.findPreference(CATEGORY_NETWORK);
 
         SystemSettingSwitchPreference useOldMobileType = findPreference(KEY_USE_OLD_MOBILETYPE);
+        SystemSettingSwitchPreference dataDisabledIcon = findPreference(KEY_DATA_DISABLED_ICON);
+        SystemSettingSwitchPreference roamingIndicatorIcon = findPreference(KEY_ROAMING_INDICATOR_ICON);
+        SystemSettingSwitchPreference showFourgIcon = findPreference(KEY_SHOW_FOURG_ICON);
+        SystemSettingSwitchPreference showVoLTEIcon = findPreference(KEY_SHOW_VOLTE_ICON);
+        SystemSettingSwitchPreference showVoWiFiIcon = findPreference(KEY_SHOW_VOWIFI_ICON);
+        SystemSettingSwitchPreference voLTEvoWiFiOverride = findPreference(KEY_VOLTE_VOWIFI_OVERRIDE);
+
         if (!TelephonyUtils.isVoiceCapable(getActivity())) {
             networkCategory.removePreference(useOldMobileType);
+            networkCategory.removePreference(dataDisabledIcon);
+            networkCategory.removePreference(roamingIndicatorIcon);
+            networkCategory.removePreference(showFourgIcon);
+            networkCategory.removePreference(showVoLTEIcon);
+            networkCategory.removePreference(showVoWiFiIcon);
+            networkCategory.removePreference(voLTEvoWiFiOverride);
         }
 
         mNetworkTrafficPref = findPreference(KEY_NETWORK_TRAFFIC_SETTINGS);
