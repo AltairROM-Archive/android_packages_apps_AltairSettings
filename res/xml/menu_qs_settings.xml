@@ -34,6 +34,12 @@
         android:summaryOff="@string/qs_tile_titles_visibility_summaryOff"
         android:defaultValue="true" />
 
+    <com.lineage.support.preferences.SecureSettingSwitchPreference
+        android:key="quick_settings_vibrate"
+        android:title="@string/qs_vibrate_title"
+        android:summary="@string/qs_vibrate_summary"
+        android:defaultValue="false"/>
+
     <PreferenceCategory
         android:title="@string/qs_row_column_category">
 
@@ -101,4 +107,3 @@
     </PreferenceCategory>
 
 </PreferenceScreen>
-

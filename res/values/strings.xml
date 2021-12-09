@@ -194,6 +194,9 @@
     <string name="qs_tile_titles_visibility_summaryOn">Labels are shown</string>
     <string name="qs_tile_titles_visibility_summaryOff">Labels are hidden</string>
 
+    <string name="qs_vibrate_title">Vibrate on touch</string>
+    <string name="qs_vibrate_summary">Vibrate when touching tiles</string>
+
     <string name="qs_row_column_category">Rows and columns</string>
     <string name="qs_rows_portrait_title">Rows (portrait)</string>
     <string name="qs_rows_landscape_title">Rows (landscape)</string>
