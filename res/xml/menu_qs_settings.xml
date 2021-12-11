@@ -46,37 +46,26 @@
         <com.lineage.support.preferences.CustomSeekBarPreference
             android:key="qs_rows_portrait"
             android:title="@string/qs_rows_portrait_title"
-            settings:min="1"
-            android:max="5" />
-
-        <com.lineage.support.preferences.CustomSeekBarPreference
-            android:key="qs_rows_landscape"
-            android:title="@string/qs_rows_landscape_title"
-            settings:min="1"
-            android:max="4" />
+            android:max="5"
+            settings:min="1" />
 
         <com.lineage.support.preferences.CustomSeekBarPreference
             android:key="qs_columns_portrait"
             android:title="@string/qs_columns_portrait_title"
-            settings:min="3"
-            android:max="8" />
+            android:max="8"
+            settings:min="3" />
+
+        <com.lineage.support.preferences.CustomSeekBarPreference
+            android:key="qs_rows_landscape"
+            android:title="@string/qs_rows_landscape_title"
+            android:max="5"
+            settings:min="1" />
 
         <com.lineage.support.preferences.CustomSeekBarPreference
             android:key="qs_columns_landscape"
             android:title="@string/qs_columns_landscape_title"
-            settings:min="3"
-            android:max="8" />
-
-        <com.lineage.support.preferences.SystemSettingSwitchPreference
-            android:key="qs_columns_quickbar_auto"
-            android:title="@string/qs_columns_quickbar_auto_title"
-            android:defaultValue="false" />
-
-        <com.lineage.support.preferences.CustomSeekBarPreference
-            android:key="qs_columns_quickbar"
-            android:title="@string/qs_columns_quickbar_title"
-            settings:min="6"
-            android:max="8" />
+            android:max="8"
+            settings:min="3" />
     </PreferenceCategory>
 
     <PreferenceCategory
