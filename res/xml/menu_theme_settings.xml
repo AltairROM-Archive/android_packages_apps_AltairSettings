@@ -24,14 +24,13 @@
         android:key="theme_styles"
         android:title="@string/theme_styles_category_title">
 
-        <Preference
-            android:key="theme_select_activity"
-            android:title="@string/style_and_wallpaper_settings_title"
-            android:persistent="false" >
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.android.customization"
-                    android:targetClass="com.android.customization.picker.CustomizationPickerActivity" />
-        </Preference>
+        <com.android.settingslib.RestrictedPreference
+            android:key="wallpaper"
+            android:title="@string/wallpaper_settings_title"
+            settings:keywords="@string/keywords_display_wallpaper"
+            settings:useAdminDisabledSummary="true"
+            settings:controller="com.android.settings.display.WallpaperPreferenceController">
+        </com.android.settingslib.RestrictedPreference>
 
         <com.android.settings.display.darkmode.DarkModePreference
             android:key="theme_dark_ui_mode"
